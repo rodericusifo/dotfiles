@@ -1,20 +1,18 @@
 #!/bin/bash
 
-set -e # Exit immediately if a command exits with a non-zero status
+set -e # Exit immediately on error
 
 echo "🚀 Starting dotfiles automated setup..."
 
-# 1. Install Git, Zsh, and Curl if missing
+# 1. Install System Dependencies & CLI Tools (fzf, eza, bat, delta)
 if ! command -v git &> /dev/null || ! command -v zsh &> /dev/null || ! command -v curl &> /dev/null; then
-    echo "📦 Installing system dependencies (git, zsh, curl)..."
+    echo "📦 Installing core system dependencies..."
     if command -v apt-get &> /dev/null; then
-        sudo apt-get update && sudo apt-get install -y git zsh curl
+        sudo apt-get update && sudo apt-get install -y git zsh curl fzf bat
     elif command -v brew &> /dev/null; then
-        brew install git zsh curl
+        brew install git zsh curl fzf eza bat git-delta
     elif command -v pacman &> /dev/null; then
-        sudo pacman -S --noconfirm git zsh curl
-    elif command -v dnf &> /dev/null; then
-        sudo dnf install -y git zsh curl
+        sudo pacman -S --noconfirm git zsh curl fzf eza bat git-delta
     fi
 fi
 
@@ -24,17 +22,28 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
     RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-# 3. Download Custom Plugins & Themes
+# 3. Download Custom Plugins & Themes Required by your .zshrc
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
-echo "🔌 Cloning plugins and themes..."
+echo "🔌 Cloning Powerlevel10k theme and custom plugins..."
 
-# Powerlevel10k theme
-if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
+# Powerlevel10k Theme
+[ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ] && \
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
-fi
 
-# Custom plugins
+# Zsh Plugins defined in your plugins=(...)
+[ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ] && \
+    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+
+[ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ] && \
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+
+[ ! -d "$ZSH_CUSTOM/plugins/fzf-tab" ] && \
+    git clone https://github.com/Aloxaf/fzf-tab "$ZSH_CUSTOM/plugins/fzf-tab"
+
+[ ! -d "$ZSH_CUSTOM/plugins/you-should-use" ] && \
+    git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$ZSH_CUSTOM/plugins/you-should-use"
+
 [ ! -d "$ZSH_CUSTOM/plugins/gvm" ] && \
     git clone https://github.com/rodericusifo/zsh-gvm.git "$ZSH_CUSTOM/plugins/gvm"
 
@@ -47,14 +56,13 @@ if [ ! -d "$DOTFILES_DIR" ]; then
     git clone --bare "$DOTFILES_REPO" "$DOTFILES_DIR"
 fi
 
-# Helper function for dotfiles git command
 function dotfiles {
    /usr/bin/git --git-dir="$DOTFILES_DIR" --work-tree="$HOME" "$@"
 }
 
 echo "⚙️ Applying dotfiles configurations to $HOME..."
 
-# Backup existing conflicting files (like default .zshrc created by Oh My Zsh)
+# Backup conflicting files
 dotfiles checkout 2>&1 | grep -E "\s+\." | awk '{print $1}' | xargs -I{} mv {} {}.bak 2>/dev/null || true
 
 # Force checkout configuration files
