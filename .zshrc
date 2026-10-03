@@ -107,22 +107,8 @@ alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-# fnm (Fast Node Manager)
-FNM_PATH="$HOME/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "$(fnm env --shell zsh)"
-fi
-
-# GVM (Go Version Manager)
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-
-# Bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# Local binaries
-export PATH="$HOME/.local/bin:$PATH"
+# Load shared exports
+[ -f "$HOME/.exports" ] && source "$HOME/.exports"
 
 # Powerlevel10k configuration
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
