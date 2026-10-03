@@ -11,4 +11,4 @@ This repository is managed using the **Git Bare Repository** pattern to keep the
 Run the following one-liner in your terminal to automatically set up dependencies, Oh My Zsh, custom plugins, themes, and apply all dotfiles configurations:
 
 ```bash
-curl -fsSL [https://raw.githubusercontent.com/rodericusifo/dotfiles/main/install.sh](https://raw.githubusercontent.com/rodericusifo/dotfiles/main/install.sh) | bash
+curl -fsSL https://raw.githubusercontent.com/rodericusifo/dotfiles/main/install.sh | bash
