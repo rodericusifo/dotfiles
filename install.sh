@@ -34,14 +34,7 @@ if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
 fi
 
-# Popular Zsh plugins
-[ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ] && \
-    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
-
-[ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ] && \
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
-
-# Custom GVM plugin
+# Custom plugins
 [ ! -d "$ZSH_CUSTOM/plugins/gvm" ] && \
     git clone https://github.com/rodericusifo/zsh-gvm.git "$ZSH_CUSTOM/plugins/gvm"
 
