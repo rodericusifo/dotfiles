@@ -109,8 +109,21 @@ source $ZSH/oh-my-zsh.sh
 # Load shared aliases
 [ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
 
+# FNM Initialization for Zsh
+if command -v fnm &> /dev/null; then
+  eval "$(fnm env --shell zsh)"
+fi
+
+# GVM (Go Version Manager)
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+
 # Powerlevel10k configuration
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Homebrew (Linuxbrew)
+if [ -d "/home/linuxbrew/.linuxbrew" ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+fi
 
 # Homebrew (Linuxbrew)
 if [ -d "/home/linuxbrew/.linuxbrew" ]; then
