@@ -103,12 +103,11 @@ source $ZSH/oh-my-zsh.sh
 # ALIASES & USER CONFIG
 # =========================
 
-alias zshconfig="code ~/.zshrc"
-alias ohmyzsh="code ~/.oh-my-zsh"
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
 # Load shared exports
 [ -f "$HOME/.exports" ] && source "$HOME/.exports"
+
+# Load shared aliases
+[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
 
 # Powerlevel10k configuration
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
