@@ -1,0 +1,35 @@
+# Language & Editor Configuration
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
+# Dynamic EDITOR fallback (nvim -> vim -> nano)
+if command -v nvim &> /dev/null; then
+    export EDITOR="nvim"
+    export VISUAL="nvim"
+elif command -v vim &> /dev/null; then
+    export EDITOR="vim"
+    export VISUAL="vim"
+else
+    export EDITOR="nano"
+    export VISUAL="nano"
+fi
+
+# Core Binaries Path
+export PATH="$HOME/.local/bin:$PATH"
+
+# FNM (Fast Node Manager)
+export FNM_PATH="$HOME/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+fi
+
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+if [ -d "$BUN_INSTALL" ]; then
+  export PATH="$BUN_INSTALL/bin:$PATH"
+fi
+
+# GVM (Go Version Manager)
+if [ -d "$HOME/.gvm" ]; then
+  export GVM_ROOT="$HOME/.gvm"
+fi
