@@ -65,12 +65,12 @@ echo "⚙️ Syncing dotfiles configuration to $HOME..."
 # Hide untracked files in home directory
 dotfiles config --local status.showUntrackedFiles no
 
-# Backup conflicting local files on first run
-dotfiles checkout 2>&1 | grep -E "\s+\." | awk '{print $1}' | xargs -I{} mv {} {}.bak 2>/dev/null || true
+# Configure remote origin refspec so tracking branches like origin/main work
+dotfiles config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 
-# Fetch latest changes from remote and hard reset local tracking
+# Fetch latest changes and reset to origin/main
 dotfiles fetch origin main
-dotfiles reset --hard origin/main
+dotfiles reset --hard FETCH_HEAD
 
 # 5. Change Default Shell to Zsh
 if [ "$SHELL" != "$(which zsh)" ]; then
