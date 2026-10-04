@@ -1,10 +1,10 @@
 #!/bin/bash
 
-set -e # Exit immediately if a command exits with a non-zero status
+set -e
 
 echo "🚀 Starting automated dotfiles setup..."
 
-# 1. Install System Dependencies & CLI Tools (fzf, eza, bat, delta)
+# 1. Install System Dependencies & CLI Tools
 if ! command -v git &> /dev/null || ! command -v zsh &> /dev/null || ! command -v curl &> /dev/null; then
     echo "📦 Installing core system dependencies..."
     if command -v apt-get &> /dev/null; then
@@ -14,6 +14,12 @@ if ! command -v git &> /dev/null || ! command -v zsh &> /dev/null || ! command -
     elif command -v pacman &> /dev/null; then
         sudo pacman -S --noconfirm git zsh curl fzf eza bat git-delta
     fi
+fi
+
+# Symlink batcat to bat for Debian/Ubuntu systems
+if command -v batcat &> /dev/null && ! command -v bat &> /dev/null; then
+    mkdir -p "$HOME/.local/bin"
+    ln -sf "$(which batcat)" "$HOME/.local/bin/bat"
 fi
 
 # 2. Install Oh My Zsh (unattended)
@@ -27,11 +33,9 @@ ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
 echo "🔌 Downloading Powerlevel10k theme and custom plugins..."
 
-# Powerlevel10k Theme
 [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ] && \
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
 
-# Zsh Plugins
 [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ] && \
     git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
 
@@ -62,13 +66,9 @@ function dotfiles {
 
 echo "⚙️ Syncing dotfiles configuration to $HOME..."
 
-# Hide untracked files in home directory
 dotfiles config --local status.showUntrackedFiles no
-
-# Configure remote origin refspec so tracking branches like origin/main work
 dotfiles config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 
-# Fetch latest changes and reset to origin/main
 dotfiles fetch origin main
 dotfiles reset --hard FETCH_HEAD
 
@@ -78,4 +78,4 @@ if [ "$SHELL" != "$(which zsh)" ]; then
     chsh -s "$(which zsh)" || true
 fi
 
-echo "✅ Setup complete! Please open a new terminal or run: source ~/.zshrc"
+echo "✅ Setup complete! Open a new terminal or run: source ~/.zshrc"
