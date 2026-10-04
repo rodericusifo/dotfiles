@@ -87,6 +87,7 @@ source $ZSH/oh-my-zsh.sh
 # ALIASES & USER CONFIG
 # =========================
 
+# Load shared exports & aliases
 [ -f "$HOME/.exports" ] && source "$HOME/.exports"
 [ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
 
