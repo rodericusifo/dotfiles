@@ -75,10 +75,8 @@ fi
 # CUSTOM SHARED CONFIGURATIONS (DOTFILES)
 # ==========================================
 
-# Load shared exports
+# Load shared exports & aliases
 [ -f "$HOME/.exports" ] && source "$HOME/.exports"
-
-# Load shared aliases
 [ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
 
 # FNM Initialization for Bash
@@ -89,7 +87,11 @@ fi
 # GVM (Go Version Manager)
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
-# Homebrew (Linuxbrew)
-if [ -d "/home/linuxbrew/.linuxbrew" ]; then
+# Cross-Platform Homebrew (macOS Apple Silicon / macOS Intel / Linux)
+if [ -f "/opt/homebrew/bin/brew" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv bash)"
+elif [ -f "/usr/local/bin/brew" ]; then
+  eval "$(/usr/local/bin/brew shellenv bash)"
+elif [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 fi
