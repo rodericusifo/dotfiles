@@ -8,7 +8,8 @@ echo "🚀 Starting automated dotfiles setup..."
 if ! command -v git &> /dev/null || ! command -v zsh &> /dev/null || ! command -v curl &> /dev/null; then
     echo "📦 Installing core system dependencies..."
     if command -v apt-get &> /dev/null; then
-        sudo apt-get update && sudo apt-get install -y git zsh curl fzf bat
+        sudo apt-get update && sudo apt-get install -y git zsh curl fzf bat locales
+        sudo locale-gen en_US.UTF-8
     elif command -v brew &> /dev/null; then
         brew install git zsh curl fzf eza bat git-delta
     elif command -v pacman &> /dev/null; then
