@@ -100,8 +100,3 @@ fi
 # STARSHIP PROMPT
 # =========================
 eval "$(starship init bash)"
-
-# =========================
-# FASTFETCH LOADER
-# =========================
-fastfetch
