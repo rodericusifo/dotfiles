@@ -1,10 +1,15 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# =========================
+# ANTIDOTE PLUGIN MANAGER
+# =========================
 
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# Source antidote
+source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh
+
+# Static plugin loading (generates and sources ~/.zsh_plugins.zsh)
+if [[ ! ${ZDOTDIR:-$HOME}/.zsh_plugins.zsh -nt ${ZDOTDIR:-$HOME}/.zsh_plugins.txt ]]; then
+  antidote load
+fi
+source ${ZDOTDIR:-$HOME}/.zsh_plugins.zsh
 
 # =========================
 # FZF-TAB CONFIGURATION
@@ -53,37 +58,6 @@ zstyle ':fzf-tab:complete:git-log:*' fzf-preview 'git show $word'
 zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview 'git log -n 5 --oneline --color=always $word'
 
 # =========================
-# OH MY ZSH PLUGINS
-# =========================
-
-plugins=(
-    git
-    uv
-    python
-    fnm
-    bun
-    node
-    gvm
-    golang
-    z
-    sudo
-    copypath
-    copyfile
-    web-search
-    extract
-    docker
-    docker-compose
-    kubectl
-    you-should-use
-    fzf
-    fzf-tab
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-)
-
-source $ZSH/oh-my-zsh.sh
-
-# =========================
 # ALIASES & USER CONFIG
 # =========================
 
@@ -99,9 +73,6 @@ fi
 # GVM Initialization
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
-# Powerlevel10k Configuration
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # Cross-Platform Homebrew (macOS Apple Silicon / macOS Intel / Linux)
 if [ -f "/opt/homebrew/bin/brew" ]; then
   eval "$(/opt/homebrew/bin/brew shellenv zsh)"
@@ -110,3 +81,8 @@ elif [ -f "/usr/local/bin/brew" ]; then
 elif [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 fi
+
+# =========================
+# STARSHIP PROMPT
+# =========================
+eval "$(starship init zsh)"
