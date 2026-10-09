@@ -7,10 +7,8 @@ MichaelAquilina/zsh-you-should-use
 # Custom Pluginz
 rodericusifo/zsh-gvm
 
-# OMZ Dependencies Loader
+# OMZ Plugins
 getantidote/use-omz
-# OMZ Libs & Plugins
-ohmyzsh/ohmyzsh path:lib
 ohmyzsh/ohmyzsh path:plugins/git
 ohmyzsh/ohmyzsh path:plugins/sudo
 ohmyzsh/ohmyzsh path:plugins/fzf
