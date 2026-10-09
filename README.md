@@ -8,7 +8,7 @@ This repository is managed using the **Git Bare Repository** pattern to keep the
 
 ## 🚀 Quick Installation (New Machine / OS)
 
-Run the following one-liner in your terminal to automatically set up dependencies, Oh My Zsh, custom plugins, themes, and apply all dotfiles configurations:
+Run the following one-liner in your terminal to automatically set up dependencies, Antidote, Starship, and apply all dotfiles configurations:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/rodericusifo/dotfiles/main/install.sh | bash
