@@ -1,9 +1,11 @@
 # Theme and core bundle plugins
-romkatv/z-a-git
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
 Aloxaf/fzf-tab
 MichaelAquilina/zsh-you-should-use
+
+# Custom plugins
+rodericusifo/zsh-gvm
 
 # OMZ Library files & plugins
 ohmyzsh/ohmyzsh path:lib/git.zsh
@@ -22,6 +24,3 @@ ohmyzsh/ohmyzsh path:plugins/extract
 ohmyzsh/ohmyzsh path:plugins/docker
 ohmyzsh/ohmyzsh path:plugins/docker-compose
 ohmyzsh/ohmyzsh path:plugins/kubectl
-
-# Custom plugins
-rodericusifo/zsh-gvm
