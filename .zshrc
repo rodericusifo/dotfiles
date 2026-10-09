@@ -86,3 +86,4 @@ fi
 # OH MY POSH PROMPT
 # =========================
 eval "$(oh-my-posh init zsh)"
+eval "$(oh-my-posh init zsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/jandedobbeleer.omp.json)"
