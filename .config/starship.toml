@@ -1,0 +1,74 @@
+# Get editor completions based on the schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Replace the default '❯' prompt character with something sleek
+[character]
+success_symbol = '[➜](bold green)'
+error_symbol = '[✗](bold red)'
+vimcmd_symbol = '[❮](bold green)'
+
+# Directory module (shortens path intelligently)
+[directory]
+style = 'bold cyan'
+truncation_length = 3
+truncation_symbol = '…/'
+read_only = ' 🔒'
+
+# Git Status
+[git_branch]
+symbol = ' '
+style = 'bold purple'
+
+[git_status]
+conflicted = '🏳 '
+ahead = '⇡${count} '
+behind = '⇣${count} '
+diverged = '⇕⇡${count}⇣${count} '
+untracked = '${count} '
+stashed = '📦 '
+modified = '${count} '
+staged = '[++\($count\)](green) '
+renamed = ' térm${count} '
+deleted = '🗑️${count} '
+style = 'bold yellow'
+
+# Execution Time (shows if command takes longer than 2 seconds)
+[cmd_duration]
+min_time = 2000
+format = '[⏱️ $duration](bold yellow) '
+
+# Language Ecosystems & Tools
+[nodejs]
+symbol = '⬢ '
+style = 'bold green'
+
+[python]
+symbol = '🐍 '
+style = 'bold yellow'
+
+[golang]
+symbol = '🐹 '
+style = 'bold cyan'
+
+[rust]
+symbol = '🦀 '
+style = 'bold red'
+
+[docker_context]
+symbol = '🐳 '
+style = 'bold blue'
+
+[kubernetes]
+symbol = '☸ '
+disabled = false
+style = 'bold cyan'
+[kubernetes.context_aliases]
+".*\\/(.*)" = "$1"
+
+# Package manager / runtime versions
+[package]
+symbol = '📦 '
+disabled = true
