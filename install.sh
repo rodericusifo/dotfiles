@@ -2,16 +2,16 @@
 
 set -e
 
-echo "🚀 Starting automated dotfiles setup (Antidote + Starship)..."
+echo "🚀 Starting automated dotfiles setup..."
 
 # 1. Install System Dependencies & CLI Tools
 echo "📦 Installing core system dependencies..."
 if command -v apt-get &> /dev/null; then
-    sudo apt-get update && sudo apt-get install -y git zsh curl fzf eza bat git-delta zoxide btop fastfetch
+    sudo apt-get update && sudo apt-get install -y git zsh curl fzf eza bat git-delta zoxide btop fastfetch unzip
 elif command -v pacman &> /dev/null; then
-    sudo pacman -S --noconfirm git zsh curl fzf eza bat git-delta zoxide btop fastfetch
+    sudo pacman -S --noconfirm git zsh curl fzf eza bat git-delta zoxide btop fastfetch unzip
 elif command -v brew &> /dev/null; then
-    brew install git zsh curl fzf eza bat git-delta zoxide btop fastfetch
+    brew install git zsh curl fzf eza bat git-delta zoxide btop fastfetch unzip
 fi
 
 # Symlink batcat to bat for Debian/Ubuntu systems
@@ -20,10 +20,11 @@ if command -v batcat &> /dev/null && ! command -v bat &> /dev/null; then
     ln -sf "$(which batcat)" "$HOME/.local/bin/bat"
 fi
 
-# 2. Install Starship Prompt
-if ! command -v starship &> /dev/null; then
-    echo "⭐ Installing Starship prompt..."
-    curl -sS https://starship.rs/install.sh | sh -s -- -y
+# 2. Install Oh My Posh Prompt
+if ! command -v oh-my-posh &> /dev/null; then
+    echo "🎨 Installing Oh My Posh prompt..."
+    sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+    sudo chmod +x /usr/local/bin/oh-my-posh
 fi
 
 # 3. Install Antidote Plugin Manager
