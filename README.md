@@ -1,6 +1,6 @@
 # 🛠️ rodericusifo's Dotfiles
 
-Personal development environment configuration powered by **Zsh**, **Oh My Zsh**, **Powerlevel10k**, and custom plugins.
+Personal development environment configuration.
 
 This repository is managed using the **Git Bare Repository** pattern to keep the home directory (`$HOME`) clean and free of unnecessary symlinks.
 
