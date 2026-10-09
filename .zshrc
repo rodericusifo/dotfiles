@@ -86,9 +86,3 @@ fi
 # STARSHIP PROMPT
 # =========================
 eval "$(starship init zsh)"
-
-# =========================
-# FASTFETCH LOADER
-# =========================
-fastfetch
-
