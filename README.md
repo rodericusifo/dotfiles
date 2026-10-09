@@ -1,4 +1,4 @@
-# 🛠️ Roderic's Dotfiles
+# 🛠️ rodericusifo's Dotfiles
 
 Personal development environment configuration powered by **Zsh**, **Oh My Zsh**, **Powerlevel10k**, and custom plugins.
 
