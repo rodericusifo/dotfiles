@@ -57,9 +57,9 @@ zstyle ':fzf-tab:complete:git-(add|diff|restore):*' fzf-preview 'git diff $word 
 zstyle ':fzf-tab:complete:git-log:*' fzf-preview 'git show $word'
 zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview 'git log -n 5 --oneline --color=always $word'
 
-# =========================
-# ALIASES & USER CONFIG
-# =========================
+# ==========================================
+# CUSTOM SHARED CONFIGURATIONS (DOTFILES)
+# ==========================================
 
 # Load shared exports & aliases
 [ -f "$HOME/.exports" ] && source "$HOME/.exports"
