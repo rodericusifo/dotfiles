@@ -1,20 +1,3 @@
-# OMZ plugins
-getantidote/use-omz
-ohmyzsh/ohmyzsh path/git
-ohmyzsh/ohmyzsh path/python
-ohmyzsh/ohmyzsh path/node
-ohmyzsh/ohmyzsh path/golang
-ohmyzsh/ohmyzsh path/z
-ohmyzsh/ohmyzsh path/sudo
-ohmyzsh/ohmyzsh path/copypath
-ohmyzsh/ohmyzsh path/copyfile
-ohmyzsh/ohmyzsh path/web-search
-ohmyzsh/ohmyzsh path/extract
-ohmyzsh/ohmyzsh path/docker
-ohmyzsh/ohmyzsh path/docker-compose
-ohmyzsh/ohmyzsh path/kubectl
-ohmyzsh/ohmyzsh path/fzf
-
 # Community plugins
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
