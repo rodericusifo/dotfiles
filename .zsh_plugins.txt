@@ -1,5 +1,22 @@
+# Community Plugins
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
 Aloxaf/fzf-tab
 MichaelAquilina/zsh-you-should-use
+
+# Custom Pluginz
 rodericusifo/zsh-gvm
+
+# OMZ Dependencies Loader
+getantidote/use-omz
+# OMZ Libs & Plugins
+ohmyzsh/ohmyzsh path:lib
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/sudo
+ohmyzsh/ohmyzsh path:plugins/fzf
+ohmyzsh/ohmyzsh path:plugins/extract
+ohmyzsh/ohmyzsh path:plugins/copypath
+ohmyzsh/ohmyzsh path:plugins/copyfile
+ohmyzsh/ohmyzsh path:plugins/docker
+ohmyzsh/ohmyzsh path:plugins/docker-compose
+ohmyzsh/ohmyzsh path:plugins/kubectl
