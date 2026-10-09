@@ -23,8 +23,7 @@ fi
 # 2. Install Oh My Posh Prompt
 if ! command -v oh-my-posh &> /dev/null; then
     echo "🎨 Installing Oh My Posh prompt..."
-    sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-    sudo chmod +x /usr/local/bin/oh-my-posh
+    curl -s https://ohmyposh.dev/install.sh | bash -s
 fi
 
 # 3. Install Antidote Plugin Manager
