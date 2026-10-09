@@ -95,3 +95,8 @@ elif [ -f "/usr/local/bin/brew" ]; then
 elif [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 fi
+
+# =========================
+# STARSHIP PROMPT
+# =========================
+eval "$(starship init bash)"
