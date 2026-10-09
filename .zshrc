@@ -83,6 +83,6 @@ elif [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
 fi
 
 # =========================
-# STARSHIP PROMPT
+# OH MY POSH PROMPT
 # =========================
-eval "$(starship init zsh)"
+eval "$(oh-my-posh init zsh)"
