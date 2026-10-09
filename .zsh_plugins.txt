@@ -1,4 +1,21 @@
-# Theme and core bundle plugins
+# OMZ plugins
+getantidote/use-omz
+ohmyzsh/ohmyzsh path/git
+ohmyzsh/ohmyzsh path/python
+ohmyzsh/ohmyzsh path/node
+ohmyzsh/ohmyzsh path/golang
+ohmyzsh/ohmyzsh path/z
+ohmyzsh/ohmyzsh path/sudo
+ohmyzsh/ohmyzsh path/copypath
+ohmyzsh/ohmyzsh path/copyfile
+ohmyzsh/ohmyzsh path/web-search
+ohmyzsh/ohmyzsh path/extract
+ohmyzsh/ohmyzsh path/docker
+ohmyzsh/ohmyzsh path/docker-compose
+ohmyzsh/ohmyzsh path/kubectl
+ohmyzsh/ohmyzsh path/fzf
+
+# Community plugins
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
 Aloxaf/fzf-tab
@@ -6,21 +23,3 @@ MichaelAquilina/zsh-you-should-use
 
 # Custom plugins
 rodericusifo/zsh-gvm
-
-# OMZ Library files & plugins
-ohmyzsh/ohmyzsh path:lib/git.zsh
-ohmyzsh/ohmyzsh path:plugins/git
-ohmyzsh/ohmyzsh path:plugins/uv
-ohmyzsh/ohmyzsh path:plugins/python
-ohmyzsh/ohmyzsh path:plugins/fnm
-ohmyzsh/ohmyzsh path:plugins/bun
-ohmyzsh/ohmyzsh path:plugins/node
-ohmyzsh/ohmyzsh path:plugins/golang
-ohmyzsh/ohmyzsh path:plugins/z
-ohmyzsh/ohmyzsh path:plugins/sudo
-ohmyzsh/ohmyzsh path:plugins/copypath
-ohmyzsh/ohmyzsh path:plugins/copyfile
-ohmyzsh/ohmyzsh path:plugins/extract
-ohmyzsh/ohmyzsh path:plugins/docker
-ohmyzsh/ohmyzsh path:plugins/docker-compose
-ohmyzsh/ohmyzsh path:plugins/kubectl
