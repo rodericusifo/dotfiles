@@ -11,7 +11,16 @@ if command -v apt-get &> /dev/null; then
 elif command -v pacman &> /dev/null; then
     sudo pacman -S --noconfirm git zsh curl fzf eza bat git-delta zoxide btop fastfetch unzip
 elif command -v brew &> /dev/null; then
-    brew install git zsh curl fzf eza bat git-delta zoxide btop fastfetch unzip
+    # Install general tools that won't conflict with macOS defaults
+    brew install git zsh fzf eza bat git-delta zoxide btop fastfetch
+
+    # Handle curl and unzip safely on macOS (skip if already available)
+    echo "Checking curl and unzip..."
+    for pkg in curl unzip; do
+        if ! brew list "$pkg" &> /dev/null; then
+            brew install "$pkg" || echo "⚠️ Notice: Skipped or handled system default for $pkg."
+        fi
+    done
 fi
 
 # Symlink batcat to bat for Debian/Ubuntu systems
