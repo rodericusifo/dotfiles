@@ -2,7 +2,7 @@
 
 set -e
 
-echo "🚀 Starting automated dotfiles setup..."
+echo "🚀 Starting automated dotfiles setup (Antidote + Starship)..."
 
 # 1. Install System Dependencies & CLI Tools
 echo "📦 Installing core system dependencies..."
@@ -20,34 +20,17 @@ if command -v batcat &> /dev/null && ! command -v bat &> /dev/null; then
     ln -sf "$(which batcat)" "$HOME/.local/bin/bat"
 fi
 
-# 2. Install Oh My Zsh (unattended)
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo "💡 Installing Oh My Zsh..."
-    RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# 2. Install Starship Prompt
+if ! command -v starship &> /dev/null; then
+    echo "⭐ Installing Starship prompt..."
+    curl -sS https://starship.rs/install.sh | sh -s -- -y
 fi
 
-# 3. Download Powerlevel10k Theme & Custom Plugins
-ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
-
-echo "🔌 Downloading Powerlevel10k theme and custom plugins..."
-
-[ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ] && \
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
-
-[ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ] && \
-    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
-
-[ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ] && \
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
-
-[ ! -d "$ZSH_CUSTOM/plugins/fzf-tab" ] && \
-    git clone https://github.com/Aloxaf/fzf-tab "$ZSH_CUSTOM/plugins/fzf-tab"
-
-[ ! -d "$ZSH_CUSTOM/plugins/you-should-use" ] && \
-    git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$ZSH_CUSTOM/plugins/you-should-use"
-
-[ ! -d "$ZSH_CUSTOM/plugins/gvm" ] && \
-    git clone https://github.com/rodericusifo/zsh-gvm.git "$ZSH_CUSTOM/plugins/gvm"
+# 3. Install Antidote Plugin Manager
+if [ ! -d "$HOME/.antidote" ]; then
+    echo "🔌 Installing Antidote plugin manager..."
+    git clone --depth=1 https://github.com/mattmc3/antidote.git "$HOME/.antidote"
+fi
 
 # 4. Setup & Synchronize Bare Repository Dotfiles
 DOTFILES_DIR="$HOME/.dotfiles"
@@ -70,7 +53,13 @@ dotfiles config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 dotfiles fetch origin main
 dotfiles reset --hard FETCH_HEAD
 
-# 5. Change Default Shell to Zsh
+# 5. Build Static Antidote Plugins File on First Run
+if [ -f "$HOME/.zsh_plugins.txt" ] && [ ! -f "$HOME/.zsh_plugins.zsh" ]; then
+    echo "⚡ Pre-compiling Zsh plugins with Antidote..."
+    zsh -c "source $HOME/.antidote/antidote.zsh && antidote bundle < $HOME/.zsh_plugins.txt > $HOME/.zsh_plugins.zsh"
+fi
+
+# 6. Change Default Shell to Zsh
 if [ "$SHELL" != "$(which zsh)" ]; then
     echo "🐚 Changing default shell to Zsh..."
     chsh -s "$(which zsh)" || true
