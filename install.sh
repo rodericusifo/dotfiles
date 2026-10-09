@@ -7,11 +7,11 @@ echo "🚀 Starting automated dotfiles setup (Antidote + Starship)..."
 # 1. Install System Dependencies & CLI Tools
 echo "📦 Installing core system dependencies..."
 if command -v apt-get &> /dev/null; then
-    sudo apt-get update && sudo apt-get install -y git zsh curl fzf eza bat git-delta
+    sudo apt-get update && sudo apt-get install -y git zsh curl fzf eza bat git-delta zoxide btop fastfetch
 elif command -v pacman &> /dev/null; then
-    sudo pacman -S --noconfirm git zsh curl fzf eza bat git-delta
+    sudo pacman -S --noconfirm git zsh curl fzf eza bat git-delta zoxide btop fastfetch
 elif command -v brew &> /dev/null; then
-    brew install git zsh curl fzf eza bat git-delta
+    brew install git zsh curl fzf eza bat git-delta zoxide btop fastfetch
 fi
 
 # Symlink batcat to bat for Debian/Ubuntu systems
