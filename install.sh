@@ -5,15 +5,13 @@ set -e
 echo "🚀 Starting automated dotfiles setup..."
 
 # 1. Install System Dependencies & CLI Tools
-if ! command -v git &> /dev/null || ! command -v zsh &> /dev/null || ! command -v curl &> /dev/null; then
-    echo "📦 Installing core system dependencies..."
-    if command -v apt-get &> /dev/null; then
-        sudo apt-get update && sudo apt-get install -y git zsh curl fzf bat locales
-    elif command -v brew &> /dev/null; then
-        brew install git zsh curl fzf eza bat git-delta
-    elif command -v pacman &> /dev/null; then
-        sudo pacman -S --noconfirm git zsh curl fzf eza bat git-delta
-    fi
+echo "📦 Installing core system dependencies..."
+if command -v apt-get &> /dev/null; then
+    sudo apt-get update && sudo apt-get install -y git zsh curl fzf eza bat git-delta
+elif command -v pacman &> /dev/null; then
+    sudo pacman -S --noconfirm git zsh curl fzf eza bat git-delta
+elif command -v brew &> /dev/null; then
+    brew install git zsh curl fzf eza bat git-delta
 fi
 
 # Symlink batcat to bat for Debian/Ubuntu systems
