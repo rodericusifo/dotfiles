@@ -4,9 +4,6 @@ zsh-users/zsh-autosuggestions
 Aloxaf/fzf-tab
 MichaelAquilina/zsh-you-should-use
 
-# Custom Pluginz
-rodericusifo/zsh-gvm
-
 # OMZ Plugins
 getantidote/use-omz
 ohmyzsh/ohmyzsh path:lib
