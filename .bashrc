@@ -84,9 +84,6 @@ if command -v fnm &> /dev/null; then
   eval "$(fnm env --shell bash)"
 fi
 
-# GVM (Go Version Manager)
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-
 # Cross-Platform Homebrew (macOS Apple Silicon / macOS Intel / Linux)
 if [ -f "/opt/homebrew/bin/brew" ]; then
   eval "$(/opt/homebrew/bin/brew shellenv bash)"
