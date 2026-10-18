@@ -82,4 +82,4 @@ fi
 # =========================
 # OH MY POSH PROMPT
 # =========================
-eval "$(oh-my-posh init zsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/clean-detailed.omp.json)"
+eval "$(oh-my-posh init zsh --config "$OH_MY_POSH_THEME")"
