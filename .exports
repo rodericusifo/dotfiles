@@ -14,8 +14,10 @@ else
     export VISUAL="nano"
 fi
 
-# Core Binaries Path
-export PATH="$HOME/.local/bin:$PATH"
+# Go-installed binaries
+if command -v go >/dev/null 2>&1; then
+  export PATH="$(go env GOPATH)/bin:$PATH"
+fi
 
 # FNM (Fast Node Manager)
 export FNM_PATH="$HOME/.local/share/fnm"
@@ -28,3 +30,6 @@ export BUN_INSTALL="$HOME/.bun"
 if [ -d "$BUN_INSTALL" ]; then
   export PATH="$BUN_INSTALL/bin:$PATH"
 fi
+
+# Core Binaries Path
+export PATH="$HOME/.local/bin:$PATH"
